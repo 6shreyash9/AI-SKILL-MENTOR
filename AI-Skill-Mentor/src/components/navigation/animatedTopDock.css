@@ -1,0 +1,271 @@
+/* Animated Top Dock — Solar Sunset (#FEC163 to #DE4313) */
+
+.animated-top-dock-component.atd-modern {
+  --atd-top: 16px;
+  --atd-bar-width: min(1200px, calc(100% - 32px));
+  --atd-bar-height: 52px;
+  --atd-item-height: 36px;
+  --atd-item-pad: 12px;
+  --atd-label: 12.5px;
+  --atd-icon: 14px;
+  --atd-gap: 6px;
+  --atd-brand: 14px;
+  --atd-mark: 26px;
+  --atd-action-height: 36px;
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  isolation: isolate;
+  background: transparent;
+  padding: var(--atd-top) 12px 14px;
+}
+
+.atd-modern__bar {
+  pointer-events: auto;
+  position: relative;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: max-content;
+  max-width: var(--atd-bar-width);
+  height: var(--atd-bar-height);
+  padding: 6px 16px 6px 14px;
+  /* Solar Sunset Glass Gradient */
+  border: 1px solid rgba(254, 193, 99, 0.35);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(28, 11, 5, 0.95) 0%, rgba(9, 3, 2, 0.96) 100%);
+  box-shadow:
+    0 24px 52px -18px rgba(0, 0, 0, 0.98),
+    0 0 30px -6px rgba(222, 67, 19, 0.35),
+    inset 0 1px 0 rgba(254, 193, 99, 0.22);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  box-sizing: border-box;
+}
+
+.atd-modern__brand {
+  display: inline-flex;
+  flex: none;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #f8fafc;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0 4px 0 0;
+}
+
+.atd-modern__mark {
+  display: block;
+  width: var(--atd-mark);
+  height: var(--atd-mark);
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(222, 67, 19, 0.6);
+}
+
+.atd-modern__mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.atd-modern__word {
+  font-size: var(--atd-brand);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.atd-modern__dock {
+  display: flex;
+  flex: none;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  height: var(--atd-item-height);
+}
+
+.atd-modern__item {
+  display: inline-flex;
+  flex: none;
+  gap: var(--atd-gap);
+  align-items: center;
+  justify-content: center;
+  height: var(--atd-item-height);
+  padding: 0 var(--atd-item-pad);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  outline: none;
+  white-space: nowrap;
+  transform-origin: 50% 0;
+  will-change: width, height, transform;
+  cursor: pointer;
+  color: #a8a29e;
+  background: transparent;
+  font: 500 var(--atd-label) / 1 inherit;
+  letter-spacing: -0.005em;
+  transition:
+    color 0.16s,
+    border-color 0.18s,
+    background 0.18s,
+    box-shadow 0.18s;
+}
+
+.atd-modern__item[data-dock-near="true"],
+.atd-modern__item:hover,
+.atd-modern__item:focus-visible {
+  color: #ffffff;
+  border-color: rgba(254, 193, 99, 0.35);
+  background: rgba(222, 67, 19, 0.16);
+  box-shadow:
+    0 8px 20px -14px rgba(0, 0, 0, 0.9),
+    inset 0 1px rgba(254, 193, 99, 0.15);
+}
+
+/* Active tab: Solar Sunset Gradient (FEC163 -> DE4313) */
+.atd-modern__item[aria-pressed="true"] {
+  color: #050302;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, #fec163 0%, #fa8c28 50%, #de4313 100%);
+  box-shadow:
+    0 0 24px rgba(222, 67, 19, 0.8),
+    0 4px 14px -4px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.atd-modern__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--atd-icon);
+  height: var(--atd-icon);
+  opacity: 0.85;
+  transition: opacity 0.16s;
+}
+
+.atd-modern__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atd-modern__item[data-dock-near="true"] .atd-modern__icon,
+.atd-modern__item[aria-pressed="true"] .atd-modern__icon {
+  opacity: 1;
+}
+
+.atd-modern__actions {
+  display: inline-flex;
+  flex: none;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.atd-modern__ghost {
+  height: var(--atd-action-height);
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: #a8a29e;
+  font: 500 var(--atd-label) / 1 inherit;
+  transition: color 0.16s, background 0.16s;
+  cursor: pointer;
+}
+
+.atd-modern__ghost:hover {
+  color: #ffffff;
+  background: rgba(222, 67, 19, 0.18);
+}
+
+.atd-modern__cta {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  height: var(--atd-action-height);
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  color: #050302;
+  background: linear-gradient(135deg, #fec163 0%, #de4313 100%);
+  font: 700 var(--atd-label) / 1 inherit;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-shadow:
+    0 10px 25px -8px rgba(222, 67, 19, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.18s;
+  cursor: pointer;
+}
+
+.atd-modern__cta svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atd-modern__cta:hover {
+  box-shadow:
+    0 14px 30px -6px rgba(222, 67, 19, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .atd-modern__bar {
+    max-width: 98vw;
+    gap: 10px;
+    padding: 6px 12px;
+  }
+
+  .atd-modern__item span:last-child {
+    display: none;
+  }
+
+  .atd-modern__item {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .atd-modern__bar {
+    width: 98vw;
+    gap: 6px;
+    padding: 5px 10px;
+  }
+
+  .atd-modern__word {
+    display: none;
+  }
+
+  .atd-modern__item {
+    height: 30px !important;
+    padding: 0 8px !important;
+    transform: none !important;
+  }
+}
